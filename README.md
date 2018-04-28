@@ -43,7 +43,7 @@ export const store = createStore(state);
 
 
 
-#### 1-2) setStore( [stateName] , [stateData] )
+### 1-2) setStore( [stateName] , [stateData] )
 set value of state in redux store WITH two way binding
 
 ##### Have 2 way usage
@@ -77,7 +77,7 @@ componentDidMount(){
 
 
 
-#### 1-3) getStore( [stateName])
+### 1-3) getStore( [stateName])
 get value of state in redux store WITH OUT two way binding
 
  ##### Have 2 way usage
@@ -161,3 +161,8 @@ export default class App extends Component {
     render() { return ".. some value ..";  }
 }
 ```
+
+
+## License
+
+MIT
