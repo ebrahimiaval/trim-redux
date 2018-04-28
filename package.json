@@ -1,6 +1,6 @@
 {
   "name": "trim-redux",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A tool for work simplify with the Redux in Reactjs",
   "main": "index.js",
   "scripts": {
@@ -22,5 +22,5 @@
     "redux": "^3.0.0"
   },
   "author": "Mohammad Ebrahimi Aval [m.ebrahimiaval@gmail.com]",
-  "license": "ISC"
+  "license": "MIT"
 }
