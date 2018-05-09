@@ -1,5 +1,6 @@
 # trim-redux
-STOP! not repeat code. put your time on develop.
+Do not repeat codes! put your time on develop.
+minify size: 1KB
 
 trim-redux is a tool for work simplify with the Redux in Reactjs. 
 trim-redux removed reducer, combineReducer and action in redux usage process  and let you work with redux like react component state!
@@ -80,7 +81,7 @@ componentDidMount(){
 ### 1-3) getStore( [stateName])
 get value of state in redux store WITH OUT two way binding
 
- ##### Have 2 way usage
+#####Have 2 way usag
  
 1) get all state (store object) and access to state with chain. like: getStore().user.name
 2) get state directly by pass state name as string. like: getStore('user').name
@@ -89,9 +90,9 @@ NOTICE:
  if you need to get value of state with out two way binding use getStore()
  else use connect()() method of react-redux with mapStateToProps.
  
- ##### params
+ #####params
  
-@firstParam [stateName] : string, name of state in state. like: 'user'
+ @firstParam [stateName] : string, name of state in state. like: 'user'
 cls
 
 @returns: state object || state vlaue. when pass param get the vlaue of passed state else get state object (contain all state value). 
