@@ -32,16 +32,19 @@ var store;
  * @param defaultState
  * @returns {function(*=, *)}
  */
-const reducer = (stateName, defaultState) => {
-    return (state = defaultState, action) => {
+var reducer = function reducer(stateName, defaultState) {
+    return function () {
+        var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
+        var action = arguments[1];
+
         switch (action.type) {
             case stateName:
                 return action.state;
             default:
                 return state;
         }
-    }
-}
+    };
+};
 
 
 
@@ -54,12 +57,12 @@ const reducer = (stateName, defaultState) => {
  * @param obj: object, like component state
  * @returns {Reducer<any>} : redux combineReducers()
  */
-const stateMaker = (obj) => {
+var stateMaker = function stateMaker(obj) {
     for (var key in obj) {
         obj[key] = reducer(key, obj[key]);
     }
     return redux.combineReducers(obj);
-}
+};
 
 
 
@@ -73,11 +76,10 @@ const stateMaker = (obj) => {
  * @param [options] : the redux createStore() method options
  * @returns: redux store object (equal return of redux createStore() method)
  */
-const createStore = (state, options) => {
+var createStore = function createStore(state, options) {
     store = redux.createStore(stateMaker(state), options);
     return store;
 };
-
 
 
 
@@ -89,13 +91,12 @@ const createStore = (state, options) => {
  * @param [stateName] : string. name of state in store.
  * @param [stateData] : any type. value of defined state in first parameter
  */
-const dispatchStore = (stateName, stateData) => {
+var dispatchStore = function dispatchStore(stateName, stateData) {
     store.dispatch({
         type: stateName,
         state: stateData
     });
-}
-
+};
 
 
 
@@ -116,18 +117,18 @@ const dispatchStore = (stateName, stateData) => {
  * @param [stateName] : string. name of state in store.
  * @param [stateData] : any type. value of defined state in first parameter
  */
-const setStore = (stateName, stateData) => {
+var setStore = function setStore(stateName, stateData) {
     if (typeof stateName === 'string') {
         dispatchStore(stateName, stateData);
     } else {
         // when stateName is object like { a: 'b' }
         // then run dispatch for all object property
-        const stateObj = stateName;
+        var stateObj = stateName;
         for (var key in stateObj) {
             dispatchStore(key, stateObj[key]);
         }
     }
-}
+};
 
 
 
@@ -147,12 +148,12 @@ const setStore = (stateName, stateData) => {
  *
  * @param [stateName] : string, name of state in state. like: 'user'
  */
-const getStore = (stateName) => {
+var getStore = function getStore(stateName) {
     if (typeof stateName === 'undefined')
         return store.getState();
     else
         return store.getState()[stateName];
-}
+};
 
 
 
