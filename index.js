@@ -15,14 +15,10 @@
  *  dependence
  *  * redux
  */
-import * as redux from "redux";
-
-
-
-
+var redux = require('redux');
 
 // the store object holder
-let store;
+var store;
 
 
 
@@ -163,4 +159,8 @@ const getStore = (stateName) => {
 
 
 // export methods
-export {getStore, setStore, createStore};
+module.exports = {
+    getStore: getStore,
+    setStore: setStore,
+    createStore: createStore
+};
