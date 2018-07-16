@@ -78,6 +78,12 @@ var stateMaker = function stateMaker(obj) {
  */
 var createStore = function createStore(state, options) {
     store = redux.createStore(stateMaker(state), options);
+
+    // rewrite replaceReducer
+    store.replaceReducer = function (state) {
+        return store.replaceReducer(stateMaker(state));
+    }
+
     return store;
 };
 
