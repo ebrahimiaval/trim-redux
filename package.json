@@ -1,6 +1,6 @@
 {
   "name": "trim-redux",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A tool for work simplify with the Redux in Reactjs",
   "main": "index.js",
   "scripts": {
