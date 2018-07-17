@@ -21,7 +21,7 @@
     "type": "git",
     "url": "git+https://github.com/ebrahimiaval/trim-redux.git"
   },
-  "devDependencies": {
+  "dependencies": {
     "redux": "^3.0.0"
   },
   "author": {
