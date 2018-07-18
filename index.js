@@ -84,7 +84,7 @@ var createStore = function createStore() {
     arg[0] = stateMaker(arg[0]);
 
     // create redux store
-    store = redux.createStore(arg);
+    store = redux.createStore.apply(this, arg);
 
     // rewrite replaceReducer
     store.replaceReducer = function (state) {
