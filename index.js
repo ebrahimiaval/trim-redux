@@ -76,8 +76,15 @@ var stateMaker = function stateMaker(obj) {
  * @param [options] : the redux createStore() method options
  * @returns: redux store object (equal return of redux createStore() method)
  */
-var createStore = function createStore(state, options) {
-    store = redux.createStore(stateMaker(state), options);
+var createStore = function createStore() {
+    // get arguments
+    var arg = arguments;
+
+    // convert state objeect to reducer
+    arg[0] = stateMaker(arg[0]);
+
+    // create redux store
+    store = redux.createStore(arg);
 
     // rewrite replaceReducer
     store.replaceReducer = function (state) {
