@@ -160,16 +160,19 @@ var dispatchStore = function (stateName, stateData) {
  */
 var setStore = function setStore(stateName, stateData) {
     if (typeof stateName === 'string') {
-        dispatchStore(stateName, stateData);
+        return dispatchStore(stateName, stateData);
     } else {
         // when stateName is object like { a: 'b' }
         // then run dispatch for all object property
         var stateObj = stateName;
+        var prms = [];
         for (var key in stateObj) {
-            dispatchStore(key, stateObj[key]);
+            prms.push(dispatchStore(key, stateObj[key]));
         }
+        return Promise.all(prms);
     }
 };
+
 
 
 
