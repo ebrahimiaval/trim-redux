@@ -25,6 +25,27 @@ var store;
 
 
 /**
+ * copining an object
+ * @type {((url: string) => void) | Function}
+ * @private
+ */
+var extendObject = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+            if (Object.prototype.hasOwnProperty.call(source, key)) {
+                target[key] = source[key];
+            }
+        }
+    }
+    return target;
+};
+
+
+
+
+
+/**
  *  ## raducer builder
  *  build and return a raducer function
  *
@@ -58,10 +79,15 @@ var reducer = function reducer(stateName, defaultState) {
  * @returns {Reducer<any>} : redux combineReducers()
  */
 var stateMaker = function stateMaker(obj) {
-    for (var key in obj) {
-        obj[key] = reducer(key, obj[key]);
-    }
-    return redux.combineReducers(obj);
+    //copy for fix conflict
+    var raducers = extendObject({}, obj);
+
+    // conver state object to reducers functions
+    for (var key in raducers)
+        raducers[key] = reducer(key, raducers[key]);
+
+    // combine reducers
+    return redux.combineReducers(raducers);
 };
 
 
@@ -97,19 +123,21 @@ var createStore = function createStore() {
 
 
 
+
 /**
  * # dispatch Store state
  *  run redxu dispatch method for set new value of state and update all connected component
  *
  * @param [stateName] : string. name of state in store.
- * @param [stateData] : any type. value of defined state in first parameter
+ * @param [stateData<any>]  value of defined state in first parameter
  */
-var dispatchStore = function dispatchStore(stateName, stateData) {
+var dispatchStore = function (stateName, stateData) {
     store.dispatch({
         type: stateName,
         state: stateData
     });
 };
+
 
 
 
@@ -127,8 +155,8 @@ var dispatchStore = function dispatchStore(stateName, stateData) {
  * 2) set state value directly with pass name of state as string in first parameter
  * and value of it in second parameter. like: setStore('age',20)
  *
- * @param [stateName] : string. name of state in store.
- * @param [stateData] : any type. value of defined state in first parameter
+ * @param [stateName<any>] name of state in store.
+ * @param [stateData<any>] value of defined state in first parameter
  */
 var setStore = function setStore(stateName, stateData) {
     if (typeof stateName === 'string') {
@@ -159,7 +187,7 @@ var setStore = function setStore(stateName, stateData) {
  *  if use need to get value of state with out two way binding use getStore()
  *  else use connect()() method of react-redux with mapStateToProps.
  *
- * @param [stateName] : string, name of state in state. like: 'user'
+ * @param [stateName] name of state in state. like: 'user'
  */
 var getStore = function getStore(stateName) {
     if (typeof stateName === 'undefined')
