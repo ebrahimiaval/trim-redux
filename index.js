@@ -132,7 +132,7 @@ var createStore = function createStore() {
  * @param [stateData<any>]  value of defined state in first parameter
  */
 var dispatchStore = function (stateName, stateData) {
-    store.dispatch({
+    return store.dispatch({
         type: stateName,
         state: stateData
     });
@@ -172,7 +172,6 @@ var setStore = function setStore(stateName, stateData) {
         return Promise.all(prms);
     }
 };
-
 
 
 
