@@ -15,7 +15,7 @@
  *  dependence
  *  * redux
  */
-var redux = require('redux');
+import redux from "redux";
 
 // the store object holder
 var store;

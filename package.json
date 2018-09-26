@@ -4,7 +4,7 @@
   "description": "A tool for work simplify with the Redux in Reactjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel ./src --watch --out-dir ./"
   },
   "keywords": [
     "react",
@@ -23,6 +23,14 @@
   },
   "dependencies": {
     "redux": "^3.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-minify": "^0.4.3",
+    "babel-preset-stage-0": "^6.24.1"
   },
   "author": {
     "name": "Mohammad Ebrahimi Aval",
