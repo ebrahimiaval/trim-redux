@@ -1,6 +1,15 @@
 {
   "presets": [
-    "env",
-    "stage-0"
-  ]
+    ["minify", {
+      "simplify" : true,
+      "keepFnName": true
+    }],
+    ["@babel/preset-env", { "modules": false }]
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-object-rest-spread",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose" : true }]
+  ],
+  "comments": false
 }

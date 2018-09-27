@@ -1,16 +1,14 @@
 # trim-redux
-Do not repeat codes! put your time on develop.
-minify size: 1KB
+version 2 released.we used in version 2 ES6 and babel 7 and rewrite all structure 
+but package method behavior do not changed.
 
 trim-redux is a tool for work simplify with the Redux in Reactjs. 
 trim-redux removed reducer, combineReducer and action in redux usage process  and let you work with redux like react component state!
 
 use setStore() method for set new value of redux store state [ work with it like React setState() method ], and use getStore() for get value of redux store state.
-
-
 ## 1) methods
 
-### 1-1) createStore( state , [options] )
+### 1-1) createStore( stateObject , [options] )
 create a redux store like createStore() method in Redux but the difference is that, 
 in redux createStore you must pass combineReducer result and in trim-redux you pass an
 normal json object for set initial definition.
@@ -81,7 +79,7 @@ componentDidMount(){
 ### 1-3) getStore( [stateName])
 get value of state in redux store WITH OUT two way binding
 
-#####Have 2 way usag
+##### Have 2 way usag
  
 1) get all state (store object) and access to state with chain. like: getStore().user.name
 2) get state directly by pass state name as string. like: getStore('user').name
@@ -90,7 +88,7 @@ NOTICE:
  if you need to get value of state with out two way binding use getStore()
  else use connect()() method of react-redux with mapStateToProps.
  
- #####params
+ ##### params
  
  @firstParam [stateName] : string, name of state in state. like: 'user'
 cls
@@ -106,6 +104,23 @@ render(){
     
     console.log(age);
 }
+```
+
+### 1-4) raducerBuilder(stateObject)
+NOTICE: this mehtod available in version 2.x.
+convert state object to raducer functuion and at end combine raducerswith combineReducers method.
+```js
+import {createStore} from 'redux';
+import {raducerBuilder} from 'trim-redux';
+
+// . . . . in store.js file . . .
+
+const state = {
+    age : 0 // first value (default value)
+}
+
+export const store = createStore(raducerBuilder(state)); 
+
 ```
 
 

@@ -15,32 +15,10 @@
  *  dependence
  *  * redux
  */
-import redux from "redux";
+import * as redux from 'redux';
 
 // the store object holder
 var store;
-
-
-
-
-
-/**
- * copining an object
- * @type {((url: string) => void) | Function}
- * @private
- */
-var extendObject = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-        for (var key in source) {
-            if (Object.prototype.hasOwnProperty.call(source, key)) {
-                target[key] = source[key];
-            }
-        }
-    }
-    return target;
-};
-
 
 
 
@@ -54,10 +32,7 @@ var extendObject = Object.assign || function (target) {
  * @returns {function(*=, *)}
  */
 var reducer = function reducer(stateName, defaultState) {
-    return function () {
-        var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
-        var action = arguments[1];
-
+    return function (state = defaultState, action) {
         switch (action.type) {
             case stateName:
                 return action.state;
@@ -70,21 +45,23 @@ var reducer = function reducer(stateName, defaultState) {
 
 
 
-
 /**
- * state Maker
- * work like combineReducers. get reducers and return combineded reducer object.
+ * raducer builder
+ * get an object and convert to raducer and at end combine with combineReducers
  *
- * @param obj: object, like component state
- * @returns {Reducer<any>} : redux combineReducers()
+ * @param obj<object>. list of state with default value. like: {stateOne: 'value one', stateTwo: 'value two'}
+ * @returns {Reducer<any>} : redux combineReducers() result
  */
-var stateMaker = function stateMaker(obj) {
+export const raducerBuilder = function (obj) {
     //copy for fix conflict
-    var raducers = extendObject({}, obj);
+    const states = {...obj};
+    let raducers = {};
 
-    // conver state object to reducers functions
-    for (var key in raducers)
-        raducers[key] = reducer(key, raducers[key]);
+    // conver state object to reducer functions
+    for (let stateName in states) {
+        const defaultStateValue = states[stateName];
+        raducers[stateName] = reducer(stateName, defaultStateValue);
+    }
 
     // combine reducers
     return redux.combineReducers(raducers);
@@ -102,40 +79,17 @@ var stateMaker = function stateMaker(obj) {
  * @param [options] : the redux createStore() method options
  * @returns: redux store object (equal return of redux createStore() method)
  */
-var createStore = function createStore() {
+export const createStore = function () {
     // get arguments
-    var arg = arguments;
+    let arg = arguments;
 
     // convert state objeect to reducer
-    arg[0] = stateMaker(arg[0]);
+    arg[0] = raducerBuilder(arg[0]);
 
     // create redux store
-    store = redux.createStore.apply(this, arg);
-
-    // rewrite replaceReducer
-    store.replaceReducer = function (state) {
-        return store.replaceReducer(stateMaker(state));
-    }
+    store = redux.createStore(...arg);
 
     return store;
-};
-
-
-
-
-
-/**
- * # dispatch Store state
- *  run redxu dispatch method for set new value of state and update all connected component
- *
- * @param [stateName] : string. name of state in store.
- * @param [stateData<any>]  value of defined state in first parameter
- */
-var dispatchStore = function (stateName, stateData) {
-    return store.dispatch({
-        type: stateName,
-        state: stateData
-    });
 };
 
 
@@ -155,20 +109,30 @@ var dispatchStore = function (stateName, stateData) {
  * 2) set state value directly with pass name of state as string in first parameter
  * and value of it in second parameter. like: setStore('age',20)
  *
- * @param [stateName<any>] name of state in store.
+ * @param [param<any>] name of state in store.
  * @param [stateData<any>] value of defined state in first parameter
  */
-var setStore = function setStore(stateName, stateData) {
-    if (typeof stateName === 'string') {
-        return dispatchStore(stateName, stateData);
-    } else {
-        // when stateName is object like { a: 'b' }
-        // then run dispatch for all object property
-        var stateObj = stateName;
+export const setStore = function setStore(param, value) {
+    if (typeof param === 'string') {
+        /** set one state value **/
+        // param is stateName and value is stateValue
+        return store.dispatch({type: param, state: value});
+    }
+    else {
+        /** set multi state value **/
+            // when stateName is object like { a: 'b' } then run dispatch for all object property
         var prms = [];
-        for (var key in stateObj) {
-            prms.push(dispatchStore(key, stateObj[key]));
+        for (let stateName in param) {
+            const
+                // new vlaue of state with 'stateName' name.
+                stateValue = param[stateName],
+                // dispatching state
+                dispatchResult = store.dispatch({type: stateName, state: stateValue});
+
+            // push dispatch promise to promise list
+            prms.push(dispatchResult);
         }
+        //
         return Promise.all(prms);
     }
 };
@@ -191,20 +155,8 @@ var setStore = function setStore(stateName, stateData) {
  *
  * @param [stateName] name of state in state. like: 'user'
  */
-var getStore = function getStore(stateName) {
-    if (typeof stateName === 'undefined')
-        return store.getState();
-    else
-        return store.getState()[stateName];
+export const getStore = function getStore(stateName) {
+    const storeState = store.getState();
+    return (typeof stateName === 'undefined') ? storeState : storeState[stateName];
 };
 
-
-
-
-
-// export methods
-module.exports = {
-    getStore: getStore,
-    setStore: setStore,
-    createStore: createStore
-};
