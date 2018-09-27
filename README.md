@@ -106,12 +106,12 @@ render(){
 }
 ```
 
-### 1-4) raducerBuilder(stateObject)
+### 1-4) reducerBuilder(stateObject)
 NOTICE: this mehtod available in version 2.x.
-convert state object to raducer functuion and at end combine raducerswith combineReducers method.
+convert state object to reducer functuion and at end combine reducerswith combineReducers method.
 ```js
 import {createStore} from 'redux';
-import {raducerBuilder} from 'trim-redux';
+import {reducerBuilder} from 'trim-redux';
 
 // . . . . in store.js file . . .
 
@@ -119,7 +119,7 @@ const state = {
     age : 0 // first value (default value)
 }
 
-export const store = createStore(raducerBuilder(state)); 
+export const store = createStore(reducerBuilder(state)); 
 
 ```
 

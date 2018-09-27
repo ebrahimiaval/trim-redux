@@ -24,8 +24,8 @@ var store;
 
 
 /**
- *  ## raducer builder
- *  build and return a raducer function
+ *  ## reducer builder
+ *  build and return a reducer function
  *
  * @param stateName
  * @param defaultState
@@ -46,25 +46,25 @@ var reducer = function reducer(stateName, defaultState) {
 
 
 /**
- * raducer builder
- * get an object and convert to raducer and at end combine with combineReducers
+ * reducer builder
+ * get an object and convert to reducer and at end combine with combineReducers
  *
  * @param obj<object>. list of state with default value. like: {stateOne: 'value one', stateTwo: 'value two'}
  * @returns {Reducer<any>} : redux combineReducers() result
  */
-export const raducerBuilder = function (obj) {
+export const reducerBuilder = function (obj) {
     //copy for fix conflict
     const states = {...obj};
-    let raducers = {};
+    let reducers = {};
 
     // conver state object to reducer functions
     for (let stateName in states) {
         const defaultStateValue = states[stateName];
-        raducers[stateName] = reducer(stateName, defaultStateValue);
+        reducers[stateName] = reducer(stateName, defaultStateValue);
     }
 
     // combine reducers
-    return redux.combineReducers(raducers);
+    return redux.combineReducers(reducers);
 };
 
 
@@ -84,7 +84,7 @@ export const createStore = function () {
     let arg = arguments;
 
     // convert state objeect to reducer
-    arg[0] = raducerBuilder(arg[0]);
+    arg[0] = reducerBuilder(arg[0]);
 
     // create redux store
     store = redux.createStore(...arg);
