@@ -31,7 +31,7 @@ var store;
  * @param defaultState
  * @returns {function(*=, *)}
  */
-var reducer = function reducer(stateName, defaultState) {
+const reducer = function reducer(stateName, defaultState) {
     return function (state = defaultState, action) {
         switch (action.type) {
             case stateName:
@@ -121,7 +121,7 @@ export const setStore = function setStore(param, value) {
     else {
         /** set multi state value **/
             // when stateName is object like { a: 'b' } then run dispatch for all object property
-        var prms = [];
+        let prms = [];
         for (let stateName in param) {
             const
                 // new vlaue of state with 'stateName' name.

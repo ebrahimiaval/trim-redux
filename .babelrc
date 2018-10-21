@@ -1,9 +1,5 @@
 {
   "presets": [
-    ["minify", {
-      "simplify" : true,
-      "keepFnName": true
-    }],
     ["@babel/preset-env", { "modules": false }]
   ],
   "plugins": [
