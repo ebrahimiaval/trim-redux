@@ -12,6 +12,7 @@
  *  * redux
  */
 import * as redux from 'redux';
+import * as reactRedux from 'react-redux';
 
 // the store object holder
 var store;
@@ -158,3 +159,12 @@ export const getStore = function getStore(stateName) {
     return (typeof stateName === 'undefined') ? storeState : storeState[stateName];
 };
 
+
+
+/**
+ * export react-redux to dont need work with 2 package names
+ */
+export const connect = reactRedux.connect;
+export const Provider = reactRedux.Provider;
+export const createProvider = reactRedux.createProvider;
+export const connectAdvanced = reactRedux.connectAdvanced;
