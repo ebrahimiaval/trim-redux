@@ -72,7 +72,8 @@ export var getStore = function getStore(stateName) {
   var storeState = store.getState();
   return typeof stateName === 'undefined' ? storeState : storeState[stateName];
 };
+export var __esModule = reactRedux.__esModule;
 export var connect = reactRedux.connect;
 export var Provider = reactRedux.Provider;
-export var createProvider = reactRedux.createProvider;
+export var ReactReduxContext = reactRedux.ReactReduxContext;
 export var connectAdvanced = reactRedux.connectAdvanced;
