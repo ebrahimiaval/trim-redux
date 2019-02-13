@@ -164,7 +164,8 @@ export const getStore = function getStore(stateName) {
 /**
  * export react-redux to dont need work with 2 package names
  */
+export const __esModule = reactRedux.__esModule;
 export const connect = reactRedux.connect;
 export const Provider = reactRedux.Provider;
-export const createProvider = reactRedux.createProvider;
+export const ReactReduxContext = reactRedux.ReactReduxContext;
 export const connectAdvanced = reactRedux.connectAdvanced;
