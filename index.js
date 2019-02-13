@@ -11,7 +11,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 import * as redux from 'redux';
-import * as reactRedux from 'react-redux';
+export * from 'react-redux';
 var store;
 
 var reducer = function reducer(stateName, defaultState) {
@@ -29,7 +29,7 @@ var reducer = function reducer(stateName, defaultState) {
   };
 };
 
-export var reducerBuilder = function reducerBuilder(obj) {
+var reducerBuilder = function reducerBuilder(obj) {
   var states = _objectSpread({}, obj);
 
   var reducers = {};
@@ -41,13 +41,15 @@ export var reducerBuilder = function reducerBuilder(obj) {
 
   return redux.combineReducers(reducers);
 };
-export var createStore = function createStore() {
+
+var createStore = function createStore() {
   var arg = arguments;
   arg[0] = reducerBuilder(arg[0]);
   store = redux.createStore.apply(redux, _toConsumableArray(arg));
   return store;
 };
-export var setStore = function setStore(param, value) {
+
+var setStore = function setStore(param, value) {
   if (typeof param === 'string') {
     return store.dispatch({
       type: param,
@@ -68,12 +70,10 @@ export var setStore = function setStore(param, value) {
     return Promise.all(prms);
   }
 };
-export var getStore = function getStore(stateName) {
+
+var getStore = function getStore(stateName) {
   var storeState = store.getState();
   return typeof stateName === 'undefined' ? storeState : storeState[stateName];
 };
-export var __esModule = reactRedux.__esModule;
-export var connect = reactRedux.connect;
-export var Provider = reactRedux.Provider;
-export var ReactReduxContext = reactRedux.ReactReduxContext;
-export var connectAdvanced = reactRedux.connectAdvanced;
+
+export { getStore, setStore, createStore, reducerBuilder };

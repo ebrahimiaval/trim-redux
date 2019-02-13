@@ -12,7 +12,8 @@
  *  * redux
  */
 import * as redux from 'redux';
-import * as reactRedux from 'react-redux';
+// import * as reactRedux from 'react-redux';
+export * from 'react-redux';
 
 // the store object holder
 var store;
@@ -49,7 +50,7 @@ const reducer = function reducer(stateName, defaultState) {
  * @param obj<object>. list of state with default value. like: {stateOne: 'value one', stateTwo: 'value two'}
  * @returns {Reducer<any>} : redux combineReducers() result
  */
-export const reducerBuilder = function (obj) {
+const reducerBuilder = function (obj) {
     //copy for fix conflict
     const states = {...obj};
     let reducers = {};
@@ -76,7 +77,7 @@ export const reducerBuilder = function (obj) {
  * @param [options] : the redux createStore() method options
  * @returns: redux store object (equal return of redux createStore() method)
  */
-export const createStore = function () {
+const createStore = function () {
     // get arguments
     let arg = arguments;
 
@@ -108,7 +109,7 @@ export const createStore = function () {
  * @param stateData {any}: value of 'param' state.
  * @returns {Promise}
  */
-export const setStore = function setStore(param, value) {
+const setStore = function setStore(param, value) {
     if (typeof param === 'string') {
         /** set one state value **/
         // param is stateName and value is stateValue
@@ -154,7 +155,7 @@ export const setStore = function setStore(param, value) {
  *           undefined:
  * @returns {any}: value of an state or return an object of states value.
  */
-export const getStore = function getStore(stateName) {
+const getStore = function getStore(stateName) {
     const storeState = store.getState();
     return (typeof stateName === 'undefined') ? storeState : storeState[stateName];
 };
@@ -162,10 +163,6 @@ export const getStore = function getStore(stateName) {
 
 
 /**
- * export react-redux to dont need work with 2 package names
+ * export method
  */
-export const __esModule = reactRedux.__esModule;
-export const connect = reactRedux.connect;
-export const Provider = reactRedux.Provider;
-export const ReactReduxContext = reactRedux.ReactReduxContext;
-export const connectAdvanced = reactRedux.connectAdvanced;
+export {getStore, setStore, createStore, reducerBuilder};
