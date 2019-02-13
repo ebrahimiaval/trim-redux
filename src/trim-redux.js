@@ -1,16 +1,12 @@
 /**
- *  trim-redux @ not repeat code! Put your time on develop.
+ *  trim-redux
+ *  not repeat code, Put your time on develop!
  *
  *  A tool to simplify work with the Redux in Reactjs
  *  * remove action and reducer from develop process
  *  * replace createStore()
  *  * provide setStore() method with behavior like React setState() for update state value.
  *  * provide getStore() for get direct store state
- *
- *  developer
- *  * Mohammad Ebrahimi Aval
- *  * m.ebrahimiaval@gmail.com
- *  * ebrahimiaval.ir
  *
  *  dependence
  *  * redux
@@ -74,8 +70,8 @@ export const reducerBuilder = function (obj) {
 /**
  * # create redux store
  *
- * @param state : json object (REQUIRE). an object for first define state.
- * default value of state is value of this property value. like : { user: null, payCount: 0 }
+ * @param state {object}(REQUIRE): an object for first define state.
+ * default value of state is value of this property value. ( exp: { user: null, payCount: 0 } )
  * @param [options] : the redux createStore() method options
  * @returns: redux store object (equal return of redux createStore() method)
  */
@@ -97,20 +93,19 @@ export const createStore = function () {
 
 
 /**
- *
- *  buid action and run store.dispatch to set value of Redux store states
- */
-/**
- * ## set store state
- * set value of state in redux store WITH two way binding
+ * ## set store state value
+ * set value of state in redux store
  *
  * Have 2 way usage
- * 1) pass an object and work with it like React setState(). like: setStore({ age: 20 })
+ * 1) pass an object and work with it like React setState().
  * 2) set state value directly with pass name of state as string in first parameter
- * and value of it in second parameter. like: setStore('age',20)
+ * and value of it in second parameter.
  *
- * @param [param<any>] name of state in store.
- * @param [stateData<any>] value of defined state in first parameter
+ * @param param {string | object}:
+ *          string: name of state and value is require. ( exp: setStore('age',20) )
+ *          object: an object like React setState method parameter. ( exp: setStore({ age: 20 }) )
+ * @param stateData {any}: value of 'param' state.
+ * @returns {Promise}
  */
 export const setStore = function setStore(param, value) {
     if (typeof param === 'string') {
@@ -150,10 +145,13 @@ export const setStore = function setStore(param, value) {
  * 2) get state directly by pass state name as string. like: getStore('user').name
  *
  * NOTICE:
- *  if use need to get value of state with out two way binding use getStore()
+ *  if you need to get value of state with out two way binding use getStore()
  *  else use connect()() method of react-redux with mapStateToProps.
  *
- * @param [stateName] name of state in state. like: 'user'
+ * @param stateName {string | undefined}:
+ *           string: name of redux state. ( exp: 'user' )
+ *           undefined:
+ * @returns {any}: value of an state or return an object of states value.
  */
 export const getStore = function getStore(stateName) {
     const storeState = store.getState();

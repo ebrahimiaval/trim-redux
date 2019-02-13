@@ -32,10 +32,5 @@
     "babel-preset-minify": "^0.5.0",
     "redux": "^4.0.1"
   },
-  "author": {
-    "name": "Mohammad Ebrahimi Aval",
-    "email": "m.ebrahimiaval@gmail.com",
-    "url": "http://ebrahimiaval.ir"
-  },
   "license": "MIT"
 }
