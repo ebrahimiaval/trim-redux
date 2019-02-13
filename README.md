@@ -1,21 +1,15 @@
 # trim-redux
-<p lang="fa" dir="rtl" align="right">
-تریم ریداکس یک واسط ساده ساز است که کمک می‌کند بتوانید به سادگی کار با Stateها در کامپوننت‌های ری‌اکت با ریداکس کار کنید.
-</p>
+[مستند فارسی آموزش تریم-ریداکس](http://vrgl.ir/TQItJ)
 
-<p lang="fa" dir="rtl" align="right">
- از مشکلات Redux ساختار عجب غریب و پیچیده‌ی آن است که باعث می‌شود نتوانیم خیلی وسیع از ریداکس استفاده کنیم و فقط در مواردی که 
- دیگر هیچ راهی جز استفاده از آن نداریم تن به توسعه ساختارش دهیم.
-</p>
+trim-redux is a tool for work simplify with the Redux in Reactjs. 
+trim-redux removed reducer, combineReducer and action in redux usage process  
+and let you work with redux like react component state!
 
-<p lang="fa" dir="rtl" align="right">
-تریم-ریداکس به حدی کار را ساده می‌کند که حال باید نگران استفاده بیش از حد ریداکس بود!
-</p>
+use setStore() method for set new value of redux store state 
+[ work with it like React setState() method ], and use getStore() for get value of redux store state.
 
-<p lang="fa" dir="rtl" align="right">
-این پکیج برای این که همواره با یک پکیج برای دریافت و 
-تزریق داده سر و کار داشته باشید درون خود پکیج react-redux را به کار گرفته و میتوانید به امکانات آن از طریق trim-redux هم دسترسی داشته باشید. 
-</p>
+## install 
+``npm i trim-redux ``
 
 ## 1) methods
 
