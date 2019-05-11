@@ -4,7 +4,8 @@
   "description": "A tool for work simplify with the Redux in Reactjs",
   "main": "index.js",
   "scripts": {
-    "build": "babel src/trim-redux.js --watch --out-file index.js"
+    "build": "babel src/trim-redux.js --out-file index.js",
+    "dev": "babel src/trim-redux.js --watch --out-file index.js"
   },
   "keywords": [
     "react",
@@ -22,7 +23,7 @@
     "url": "git+https://github.com/ebrahimiaval/trim-redux.git"
   },
   "dependencies": {
-    "react-redux": "^7.0.3",
+    "react-redux": "^6.0.0",
     "redux": "^4.0.1"
   },
   "devDependencies": {
