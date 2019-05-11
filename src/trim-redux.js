@@ -12,7 +12,7 @@
  *  * redux
  */
 import * as redux from 'redux';
-import {connect, Provider} from 'react-redux';
+export * from 'react-redux';
 
 // the store object holder
 var store;
@@ -163,4 +163,4 @@ const getStore = function getStore(stateName) {
 /**
  * export method
  */
-export {getStore, setStore, createStore, reducerBuilder, connect, Provider};
+export {getStore, setStore, createStore, reducerBuilder};

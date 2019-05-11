@@ -11,7 +11,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 import * as redux from 'redux';
-import { connect, Provider } from 'react-redux';
+export * from 'react-redux';
 var store;
 
 var reducer = function reducer(stateName, defaultState) {
@@ -76,4 +76,4 @@ var getStore = function getStore(stateName) {
   return typeof stateName === 'undefined' ? storeState : storeState[stateName];
 };
 
-export { getStore, setStore, createStore, reducerBuilder, connect, Provider };
+export { getStore, setStore, createStore, reducerBuilder };
