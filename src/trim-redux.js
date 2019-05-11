@@ -12,8 +12,7 @@
  *  * redux
  */
 import * as redux from 'redux';
-// import * as reactRedux from 'react-redux';
-export * from 'react-redux';
+import {connect, Provider} from 'react-redux';
 
 // the store object holder
 var store;
@@ -114,8 +113,7 @@ const setStore = function setStore(param, value) {
         /** set one state value **/
         // param is stateName and value is stateValue
         return store.dispatch({type: param, state: value});
-    }
-    else {
+    } else {
         /** set multi state value **/
             // when stateName is object like { a: 'b' } then run dispatch for all object property
         let prms = [];
@@ -165,4 +163,4 @@ const getStore = function getStore(stateName) {
 /**
  * export method
  */
-export {getStore, setStore, createStore, reducerBuilder};
+export {getStore, setStore, createStore, reducerBuilder, connect, Provider};
