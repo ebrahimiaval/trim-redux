@@ -14,7 +14,11 @@
 import * as redux from 'redux';
 import {connect as reactReduxConnect, Provider as reactReduxProvider} from 'react-redux';
 
-const connect = reactReduxConnect, Provider = reactReduxProvider;
+const
+    connect = reactReduxConnect,
+    Provider = reactReduxProvider,
+    applyMiddleware = redux.applyMiddleware,
+    compose = redux.compose;
 
 // the store object holder
 var store;
@@ -165,4 +169,4 @@ const getStore = function getStore(stateName) {
 /**
  * export method
  */
-export {getStore, setStore, createStore, reducerBuilder, connect, Provider};
+export {getStore, setStore, createStore, reducerBuilder, connect, Provider, applyMiddleware, compose};

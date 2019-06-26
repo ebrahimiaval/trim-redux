@@ -13,7 +13,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 import * as redux from 'redux';
 import { connect as reactReduxConnect, Provider as reactReduxProvider } from 'react-redux';
 var connect = reactReduxConnect,
-    Provider = reactReduxProvider;
+    Provider = reactReduxProvider,
+    applyMiddleware = redux.applyMiddleware,
+    compose = redux.compose;
 var store;
 
 var reducer = function reducer(stateName, defaultState) {
@@ -78,4 +80,4 @@ var getStore = function getStore(stateName) {
   return typeof stateName === 'undefined' ? storeState : storeState[stateName];
 };
 
-export { getStore, setStore, createStore, reducerBuilder, connect, Provider };
+export { getStore, setStore, createStore, reducerBuilder, connect, Provider, applyMiddleware, compose };
