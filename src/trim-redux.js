@@ -8,8 +8,6 @@
  *  * provide setStore() method with behavior like React setState() for update state value.
  *  * provide getStore() for get direct store state
  *
- *  dependence
- *  * redux
  */
 import * as redux from 'redux';
 import {connect as reactReduxConnect, Provider as reactReduxProvider} from 'react-redux';
@@ -20,18 +18,20 @@ const
     applyMiddleware = redux.applyMiddleware,
     compose = redux.compose;
 
-// the store object holder
+/**
+ * the store object holder
+ */
 var store;
 
 
 
 
 /**
- *  ## reducer builder
+ *  # reducer builder
  *  build and return a reducer function
  *
- * @param stateName
- * @param defaultState
+ * @param stateName {string} : name of state (like: 'homePage')
+ * @param defaultState {*} : default value of state
  * @returns {function(*=, *)}
  */
 const reducer = function reducer(stateName, defaultState) {
@@ -49,7 +49,7 @@ const reducer = function reducer(stateName, defaultState) {
 
 
 /**
- * reducer builder
+ * # reducer builder
  * get an object and convert to reducer and at end combine with combineReducers
  *
  * @param obj<object>. list of state with default value. like: {stateOne: 'value one', stateTwo: 'value two'}
@@ -100,7 +100,7 @@ const createStore = function () {
 
 
 /**
- * ## set store state value
+ * # set store state value
  * set value of state in redux store
  *
  * Have 2 way usage
@@ -143,7 +143,7 @@ const setStore = function setStore(param, value) {
 
 
 /**
- * ## get store state
+ * # get store state
  * get value of state in redux store WITH OUT two way binding
  *
  * Have 2 way usage
@@ -156,7 +156,7 @@ const setStore = function setStore(param, value) {
  *
  * @param stateName {string | undefined}:
  *           string: name of redux state. ( exp: 'user' )
- *           undefined:
+ *           undefined: for get all store state
  * @returns {any}: value of an state or return an object of states value.
  */
 const getStore = function getStore(stateName) {
