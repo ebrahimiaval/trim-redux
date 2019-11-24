@@ -111,6 +111,22 @@ render(){
 }
 ```
 
+### 1-4) reducerBuilder(stateObject)
+convert state object to reducer functuion and at end combine reducerswith combineReducers method.
+```js
+import {createStore} from 'redux';
+import {reducerBuilder} from 'trim-redux';
+
+// . . . . in store.js file . . .
+
+const state = {
+    age : 0 // first value (default value)
+}
+
+export const store = createStore(reducerBuilder(state)); 
+
+```
+
 
 
 ## 2) FAQ
